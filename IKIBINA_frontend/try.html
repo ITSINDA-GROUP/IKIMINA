@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IKIBINA</title>
+    <link rel="icon" href="/favicon.ico">
+    <link rel="stylesheet" href="style.css">
+    <style>
+        /* Added some basic CSS for the modal and form */
+        .modal {
+            display: none; /* Hidden by default */
+            position: fixed; /* Stay in place */
+            z-index: 1; /* Sit on top */
+            left: 0;
+            top: 0;
+            width: 100%; /* Full width */
+            height: 100%; /* Full height */
+            overflow: auto; /* Enable scroll if needed */
+            background-color: rgb(0,0,0); /* Fallback color */
+            background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+        }
+
+        .modal-content {
+            background-color: #fefefe;
+            margin: 15% auto; /* 15% from the top and centered */
+            padding: 20px;
+            border: 1px solid #888;
+            width: 80%; /* Could be more or less, depending on screen size */
+        }
+
+        .close {
+            color: #aaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+        }
+
+        .close:hover,
+        .close:focus {
+            color: black;
+            text-decoration: none;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <div class="container">
+            <div class="brand">
+                <h1>IKIBINA</h1>
+            </div>
+            <nav class="nav">
+                <ul class="nav-list">
+                    <li><a href="#">Home</a></li>
+                    <li><a href="#">About Us</a></li>
+                    <li><a href="#">Contact Us</a></li>
+                    <li><a href="#" class="highlight" id="loginBtn" style="width: auto;">LOGIN</a></li>
+                </ul>
+                <div class="hamburger" id="hamburger">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <div class="background">
+
+        <div id="Admin-form" class="modal">
+            <div class="modal-content form-box">
+                <span class="close" id="closeModal">&times;</span>
+                <div class="button-box">
+                    <div id="btn"></div>
+                    <button type="button" onclick="showAdmin()" class="toggle-btn">Admin</button>
+                    <button type="button" onclick="showAgent()" class="toggle-btn">Agent</button>
+                </div>
+
+                <form id="adminForm" class="input-group-Admin" action="connect1.php" method="post">
+                    <input type="text" class="input-field" placeholder="izina ry' itsinda" name="izina">
+                    <input type="password" class="input-field" placeholder="Umubare w' ibanga" name="password">
+                    <button type="submit" class="submit-btn"><b>Kwinjira </b>(as Admin)</button>
+                </form>
+
+                <form id="agentForm" class="input-group-Agent" action="connect2.php" method="post">
+                    <input type="text" class="input-field" placeholder="Izina" name="izina">
+                    <input type="password" class="input-field" placeholder="Umubare w' ibanga" name="password">
+                    <button type="submit" class="submit-btn"><b>Kwinjira </b>(as Agent)</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <footer class="footer">
+        <div class="footer-container">
+            <div class="footer-section about-us" style="margin-right: 100px;">
+                <h2>About Us</h2>
+                <p>We are a leading saving company for Rwanda, providing top-notch banking services to cooperatives and local saving groups. Our mission is to deliver excellence in transparency.</p>
+            </div>
+            <div class="footer-section contact-us">
+                <h2>Contact Us</h2>
+                <ul>
+                    <li>Email: <a href="mailto:ikibinarwanda@gmail.com">ikibinarwanda@gmail.com</a></li>
+                    <li>Phone: <a href="tel:+250788826080">+250788826080</a></li>
+                    <li>Address: Rwanda, Musanze, Muhoza, Hanga</li>
+                </ul>
+            </div>
+            <div class="footer-section services">
+                <h2>Services</h2>
+                <ul>
+                    <li><a href="#">Saving</a></li>
+                    <li><a href="#">Loan</a></li>
+                    <li><a href="#">Transparent records</a></li>
+                </ul>
+            </div>
+            <div class="footer-section partnerships">
+                <h2>Partnerships</h2>
+                <div class="partner-logos">
+                    <img src="icp.png" alt="Partner 1">
+                    <img src="b.jpeg" alt="Partner 2">
+                    <img src="risa.png" alt="Partner 3">
+                </div>
+            </div>
+        </div>
+        <div class="footer-social">
+            <h2>Follow Us</h2>
+            <ul class="social-links">
+                <li><a href="#"><img src="facebook.png" alt="Facebook"></a></li>
+                <li><a href="#"><img src="x.png" alt="Twitter"></a></li>
+                <li><a href="#"><img src="instagram.png" alt="Instagram"></a></li>
+                <li><a href="#"><img src="linkedin.png" alt="LinkedIn"></a></li>
+            </ul>
+        </div>
+        <div class="footer-newsletter">
+            <h2>Let's Connect</h2>
+            <form action="#">
+                <input type="email" placeholder="Enter your email" required>
+                <button type="submit">CONNECT</button>
+            </form>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2024 Blockchain Based IKIBINA. All Rights Reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Toggle between Admin and Agent forms
+        function showAdmin() {
+            document.getElementById('adminForm').style.left = '50px';
+            document.getElementById('agentForm').style.left = '450px';
+            document.getElementById('btn').style.left = '0px';
+        }
+
+        function showAgent() {
+            document.getElementById('adminForm').style.left = '-400px';
+            document.getElementById('agentForm').style.left = '50px';
+            document.getElementById('btn').style.left = '110px';
+        }
+
+        // Modal display control
+        var modal = document.getElementById('Admin-form');
+        var loginBtn = document.getElementById('loginBtn');
+        var closeModal = document.getElementById('closeModal');
+
+        // Open the modal when the login button is clicked
+        loginBtn.onclick = function() {
+            modal.style.display = 'block';
+        }
+
+        // Close the modal when the close button is clicked
+        closeModal.onclick = function() {
+            modal.style.display = 'none';
+        }
+
+        // Close the modal when clicking outside the modal content
+        window.onclick = function(event) {
+            if (event.target == modal) {
+                modal.style.display = 'none';
+            }
+        }
+
+        // Hamburger menu toggle
+        document.getElementById('hamburger').addEventListener('click', function() {
+            document.querySelector('.nav-list').classList.toggle('open');
+        });
+    </script>
+
+    <script>
+        // Text animation for IKIBINA CYAWE
+        const animatedTextElement = document.getElementById('animated-text');
+        const words = ["WITH TRANSPARENCY", "WITH SECURITY", "YOUR BEST CHOICE"]; 
+        let currentWordIndex = 0;
+
+        function animateText() {
+            animatedTextElement.innerHTML = '';
+
+            const currentWord = words[currentWordIndex];
+            currentWord.split('').forEach((char, index) => {
+                const span = document.createElement('span');
+                span.textContent = char;
+                span.style.setProperty('--delay', `${index * 0.1}s`);
+                animatedTextElement.appendChild(span);
+            });
+
+            currentWordIndex = (currentWordIndex + 1) % words.length;
+        }
+
+        setInterval(animateText, 2000);
+        animateText();
+    </script>
+
+    <script>
+        // Newsletter subscription validation
+        document.querySelector('.footer-newsletter form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const emailInput = document.querySelector('.footer-newsletter input');
+            const email = emailInput.value;
+
+            if (!validateEmail(email)) {
+                alert('Please enter a valid email address.');
+            } else {
+                alert('Thank you for subscribing!');
+                emailInput.value = '';
+            }
+        });
+
+        function validateEmail(email) {
+            const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            return re.test(email);
+        }
+    </script>
+
+</body>
+</html>
